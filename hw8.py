@@ -3,10 +3,10 @@ def buy(shopping_bag):
     item = input("상품명? ")
     if item == "":
         return False
-    n = int(input("수량은? "))
-    shopping_bag[item] = n
-    print(f"장바구니에 {item} {n}개가 담겼습니다.\n")
-    return True
+        n = int(input("수량은? "))
+        shopping_bag[item] = n
+        print(f"장바구니에 {item} {n}개가 담겼습니다.\n")
+        return True
 
 def show(shopping_bag):
     print("\n>>> 장바구니 보기:", shopping_bag)
