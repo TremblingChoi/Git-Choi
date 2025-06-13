@@ -1,0 +1,664 @@
+연습문제9.1
+scores = []
+
+print("[점수 입력]")
+score1 = int(input("#1? "))
+scores.append(score1)
+
+score2 = int(input("#2? "))
+scores.append(score2)
+
+score3 = int(input("#3? "))
+scores.append(score3)
+
+
+average = sum(scores) / len(scores)
+
+print("[점수 출력]")
+print("입력 점수:", scores[0], scores[1], scores[2])
+print(f"평균: {average:.1f")
+
+연습문제9.2
+scores = []
+
+print("[점수 입력]")
+score1 = int(input("#1? "))
+scores.append(score1)
+
+score2 = int(input("#2? "))
+scores.append(score2)
+
+score3 = int(input("#3? "))
+scores.append(score3)
+
+
+average = sum(scores) / len(scores)
+9주차
+print("[점수 출력]")
+print("입력 점수:", scores[0], scores[1], scores[2])
+print(f"평균: {average:.1f}")
+print("[검색]")
+n=int(input("찾고자 하는 점수는? "))
+if n in scores:
+    print(f"{n}점은 {scores.index(n)+1}번 학생의 점수입니댜.")
+else:
+    print(f'{n}점을 받은 학생은 없습니다.')
+
+과제:
+shopping_bag={}
+while True:
+    item=input('상품명? ')
+    if item == "":
+        break
+    n=int(input('수량은? '))
+    shopping_bag[item] = n
+    print(f"장바구니에 {item}{n}개가 담겼습니다.\n")
+
+print("\n>>> 장바구니 보기:",shopping_bag)
+print("\n[검색]")
+s=input("장바구니에서 확인하고자 하는 상품은? ")
+if s in shopping_bag:
+    print(f"{s}은(는) {n}개 담겨 있습니다.")
+else:
+    print(f"{s}(이)라는 이름의 상품은 없습니다.")
+
+10주차
+class Point :
+    def __init__(self, x=0, y=0):
+        self.__x = x
+        self.__y = y
+
+    def show(self):
+        print(f'({self.__x}, {self.__y})')
+        
+    def set(self, x, y):
+        self.__x = x
+        self.__y = y
+
+    def get(self):
+        return (self.__x, self.__y)
+
+def test():
+    p1 = Point()
+    p2 = Point(2, 3)
+
+    p1.show();
+
+    p1.set(10, 20); p1.show();
+
+    p2.show()
+
+    x, y = p2.get()
+    print(f'x={x}, y={y}')
+
+if __name__ == '__main__':
+    test()
+
+11.2
+class Time :
+    def __init__(self, hour=0, minute=0):
+        self.__hour = hour
+        self.__minute = minute
+
+    def display(self):
+        print(f'({self.__hour}:{self.__minute})')
+
+    def add(self, time):
+        h = self.__hour + time.__hour
+        m = self.__minute + time.__minute
+        if m >= 60:
+            h+=1
+            m-=60
+        return Time(h, m)
+
+    @staticmethod
+    def is_valid(hour, minute):
+        if 0 <= hour < 24 and 0 <= minute < 60 :
+            return True
+        else:
+            return False
+
+def main():
+    t1 = Time(9)
+    t2 = Time(9, 30)
+
+    t1.display()
+    t2.display()
+
+    later = t1.add(Time(1, 15))
+    later.display()
+
+    if Time.is_valid(25, 0):
+        print('유효한 시각')
+    else:
+        print('유효하지 않은 시각')
+
+if __name__ == '__main__':
+    main()
+
+과제
+
+class Point :
+    def __init__(self, x=0, y=0):
+        self.__x = x
+        self.__y = y
+
+    def show(self):
+        print(f'({self.__x}, {self.__y})')
+        
+    def set(self, x, y):
+        self.__x = x
+        self.__y = y
+
+    def get(self):
+        return (self.__x, self.__y)
+
+class Rectangle :
+    def __init__(self, x1=0, y1=0, x2=0, y2=0):
+        self.__lt=Point(x1, y1)
+        self.__rb=Point(x2, y2)
+        
+    def show(self):
+        print(f'좌측 상단 꼭짓점이 ({self.__lt.get()[0]}, {self.__lt.get()[1]})이고 우측 하단 꼭짓점이 ({self.__rb.get()[0]}, {self.__rb.get()[1]})인 사각형입니다.')
+
+    def getWidth(self):
+        return self.__rb.get()[0]-self.__lt.get()[0]
+
+    def getHeight(self):
+        return self.__rb.get()[1]-self.__lt.get()[1]
+
+    def getArea(self):
+        return self.getWidth()*self.getHeight()
+
+    def getPerimeter(self):
+        return 2*(self.getWidth()+self.getHeight())
+
+r1 = Rectangle(5, 5, 20, 10)
+a = r1.getArea()
+p = r1.getPerimeter()
+
+r1.show()
+print(f'\n넓이는 {a}, 둘레는 {p}')
+
+12주차
+12.1
+file = open('example.txt', 'w')
+file.close()
+print('파일 열고 닫기 완료')
+
+12.4
+import os
+
+filename = 'example.txt'
+if os.path.exists(filename):
+    file = open(filename, 'r')
+    file.close()
+    print('파일 열고 닫기 완료')
+else:
+    print(f'ERROR: {filename}이 존재하지 않습니다!')
+
+print('끝')
+
+12.5
+with open('example.txt', 'w') as file:
+    pass
+print('파일 열고 닫기 완료')
+
+12.6
+num = 2
+name = '홍길동'
+
+with open('example.txt', 'w') as file:
+file.write('1 이찬수\n')
+file.write(f'{num} {name}\n')
+
+print('끝')
+
+12.9
+lines = []
+with open('example.txt', 'r') as file:
+    while True:
+        line = file.readline()
+
+        if line == '':
+            break
+
+        lines.append(line.strip())
+print(lines)
+
+12.11
+import pickle
+
+filepath =  'data/example.bin'
+
+def save_data(num, name, height, scores):
+    with open(filepath, 'wb') as file:
+        pickle.dump(num, file)
+        pickle.dump(name, file)
+        pickle.dump(height, file)
+        pickle.dump(scores, file)
+
+def load_data():
+    with open(filepath, 'rb') as file:
+        num = pickle.load(file)
+        name = pickle.load(file)
+        height = pickle.load(file)
+        scores = pickle.load(file)
+
+    return num, name, height, scores
+
+num, name, height = 123, '홍길동', 180.5
+scores = {'mid': 90, 'fin':95, 'rep':10, 'att':10}
+
+save_data(num, name, height, scores)
+
+r_num, r_name, r_height, r_scores = load_data()
+
+print(r_num)
+print(r_name)
+print(r_height)
+print(r_scores)
+
+12.12
+import pickle
+
+filepath = 'circle.bin'
+
+class Circle :
+    __PI =3.14159265
+
+    def getPI(self):
+        return __PI
+    
+    def __init__(self, radius) :
+        self.__radius = radius
+        
+    def getCircumference(self) :
+        result = 2*Circle.__PI*self.__radius
+        return result
+    
+    def getArea(self) :
+        result = Circle.__PI*self.__radius**2
+        return result
+
+with open(filepath, 'wb') as file:
+    c1=Circle(10)
+    pickle.dump(c1, file)
+
+with open(filepath, 'rb') as file:
+    c2 = pickle.load(file)
+    print(f'원의 넓이는 {c2.getArea()}')
+
+연습문제 10.5
+def buy(sbag):
+    print('[구입]')
+    item=input('상품명? ')
+
+    if item == ':
+        return False
+    sbag.append(item)
+    print(f'장바구니에 {item}가(이) 담겼습니다\n')
+    return True
+
+def show(sbag):
+    print('\n>>> 장바구니 보기: ', end='')
+    print(sbag)
+
+shopping_bag=[]
+
+while True:
+    if buy(shopping_bag) == False:
+        break
+
+show(shopping_bag)
+
+13주차
+13-1
+import tkinter as tk
+root_win = tk.Tk()
+root_win.mainloop()
+
+13-2
+import tkinter as tk
+root_win = tk.Tk()
+root_win.title('나의 첫 윈도우')
+root_win.mainloop()
+
+13-3
+import tkinter as tk
+root_win = tk.Tk()
+root_win.title('나의 첫 윈도우')
+root_win.geometry('500x200-0+50')
+root_win.mainloop()
+
+13-4
+import tkinter as tk
+root_win = tk.Tk()
+root_win.title('나의 첫 윈도우')
+root_win.geometry('500x200-0+50')
+root_win.resizable(width=False, height=False)
+root_win.mainloop()
+
+13-5
+import tkinter as tk
+from tkinter import ttk
+
+def display_options(widget):
+    config = widget.configure()
+    for key, value in config.items():
+        print(f'{key:15s}\t{value}')
+
+widget = ttk.Label(None)
+display_options(widget)
+
+13-6
+import tkinter as tk
+from tkinter import ttk
+
+def buildGUI():
+    text_label1 = ttk.Label(win, text='안녕하세요')
+    text_label1.pack()
+
+win = tk.Tk()
+win.title('라벨 위젯 예1')
+buildGUI()
+win.mainloop()
+
+13-7
+import tkinter as tk
+from tkinter import ttk
+
+def buildGUI():
+    text_label1 = ttk.Label(win, text='안녕하세요')
+    text_label1.pack()
+
+    text_label2 = ttk.Label(win)
+    text_label2.configure(text='반가워요',
+                          foreground='white',
+                          background='red',
+                          font=('맑은 고딕', 20)
+    )
+
+    text_label1.pack()
+    text_label2.pack()
+
+win = tk.Tk()
+win.title('라벨 위젯 예1')
+buildGUI()
+win.mainloop()
+
+13-8
+import tkinter as tk
+from tkinter import ttk
+
+w = ttk.Label(None)
+print(w.winfo_class())
+
+13-9
+import tkinter as tk
+from tkinter import ttk
+
+def buildGUI():
+    s = ttk.Style()
+    s.configure('WR.TLabel', foreground='white', background='red', font=('맑은 고딕', 20))
+    text_label1 = ttk.Label(win, text='안녕하세요', style='WR.TLabel')
+
+    text_label2 = ttk.Label(win)
+    text_label2.configure(text='반가워요', style='WR.TLabel')
+
+    text_label1.pack()
+    text_label2.pack()
+
+win = tk.Tk()
+win.title('라벨 위젯 예1')
+buildGUI()
+win.mainloop()
+
+13-10
+import tkinter as tk
+from tkinter import ttk
+
+def buildGUI():
+    global text_label
+    text_label = ttk.Label(win, text='안녕하세요')
+
+    input_btn = ttk.Button(win, text='입력', command=input_btn_handler)
+
+    quit_btn = ttk.Button(win, text='종료', command=win.destroy)
+
+    text_label.pack()
+    input_btn.pack()
+    quit_btn.pack()
+    
+def input_btn_handler():
+    text_label.configure(text='반가워요')
+    
+win = tk.Tk()
+win.title('라벨 위젯 예1')
+buildGUI()
+win.mainloop()
+
+13-11
+import tkinter as tk
+from tkinter import ttk
+
+def buildGUI():
+    global text_label
+    text_label = ttk.Label(win, text='안녕하세요')
+
+    global name
+    name = tk.StringVar()
+    input_entry = ttk.Entry(win, textvariable=name)
+    
+    input_btn = ttk.Button(win, text='입력', command=input_btn_handler)
+
+    quit_btn = ttk.Button(win, text='종료', command=win.destroy)
+
+    text_label.pack()
+    input_entry.pack()
+    input_btn.pack()
+    quit_btn.pack()
+    
+def input_btn_handler():
+    text_label.configure(text='반가워요, ' + name.get())
+    name.set('')
+    
+win = tk.Tk()
+win.title('라벨 위젯 예1')
+buildGUI()
+win.mainloop()
+
+13-12
+import tkinter as tk
+from tkinter import ttk
+
+def buildGUI():
+    global text_area
+    text_area = tk.Text(win, width=30, height=5, wrap=tk.WORD)
+
+    input_btn = ttk.Button(win, text='출력', command=input_btn_handler)
+
+    text_area.pack()
+    input_btn.pack()
+    
+
+def input_btn_handler():
+    print(text_area.get(0.0, tk.END))
+    text_area.delete(0.0, tk.END)
+    
+win = tk.Tk()
+win.title('라벨 위젯 예1')
+buildGUI()
+win.mainloop()
+
+13-13
+import tkinter as tk
+from tkinter import ttk
+from tkinter import scrolledtext
+
+def buildGUI():
+    global text_area
+    text_area = scrolledtext.ScrolledText(win, width=30, height=5, wrap=tk.WORD)
+
+    input_btn = ttk.Button(win, text='출력', command=input_btn_handler)
+
+    text_area.pack()
+    input_btn.pack()
+    
+
+def input_btn_handler():
+    print(text_area.get(0.0, tk.END))
+    text_area.delete(0.0, tk.END)
+    
+win = tk.Tk()
+win.title('라벨 위젯 예1')
+buildGUI()
+win.mainloop()
+
+13-14
+import tkinter as tk
+from tkinter import ttk
+from tkinter import messagebox
+
+def buildGUI():
+    global check
+    check = tk.IntVar()
+    check_btn = ttk.Checkbutton(win, text='옵션을 선택하세요', variable=check, command=open_dialog_box)
+    check_btn.pack()
+
+def open_dialog_box():
+    if check.get() == 1:
+        messagebox.showinfo('확인', '옵션 선택')
+    else:
+        messagebox.showinfo('확인', '옵션 해제')
+        
+win = tk.Tk()
+win.title('라벨 위젯 예1')
+buildGUI()
+win.mainloop()
+
+13-15
+import tkinter as tk
+from tkinter import ttk
+
+GENDERS = ['남성', '여성', '기타']
+COLORS = ['red', 'yellow', 'purple']
+
+def buildGUI():
+    text_label = ttk.Label(win, text='당신의 성별은? ')
+    text_label.pack()
+    
+    global gender
+    gender = tk.IntVar()
+    for i in range(3):
+        radio_btn = ttk.Radiobutton(win, text=GENDERS[i], value=i, variable=gender, command=radio_btn_handler)
+        radio_btn.pack()
+    gender.set(-1)
+
+def radio_btn_handler():
+    choice = gender.get()
+    win.configure(background=COLORS[choice])
+
+win = tk.Tk()
+win.title('버튼 위젯 예1')
+buildGUI()
+win.mainloop()
+
+13-16
+import tkinter as tk
+from tkinter import ttk
+
+GENDERS = ['남성', '여성', '기타']
+COLORS = ['red', 'yellow', 'purple']
+
+def buildGUI():
+    btn1 = ttk.Button(win, text='버튼1')
+    btn2 = ttk.Button(win, text='버튼1')
+    btn3 = ttk.Button(win, text='버튼1')
+    btn4 = ttk.Button(win, text='버튼1')
+    btn5 = ttk.Button(win, text='버튼1')
+
+    btn1.pack()
+    btn2.pack()
+    btn3.pack()
+    btn4.pack()
+    btn5.pack()
+    
+win = tk.Tk()
+win.title('pack() 배치의 예1')
+win.geometry('300x200')
+buildGUI()
+win.mainloop()
+
+13-19
+import tkinter as tk
+from tkinter import ttk
+
+def buildGUI():
+    btn1 = ttk.Button(win, text='버튼1')
+    btn2 = ttk.Button(win, text='버튼2')
+    btn3 = ttk.Button(win, text='버튼3')
+    btn4 = ttk.Button(win, text='버튼4')
+    btn5 = ttk.Button(win, text='버튼5')
+
+    btn1.grid(row=0, column=0)
+    btn2.grid(row=1, column=0)
+    btn3.grid(row=2, column=0)
+    btn4.grid(row=3, column=0)
+    btn5.grid(row=4, column=0)
+    
+win = tk.Tk()
+win.title('pack() 배치의 예1')
+win.geometry('300x200')
+buildGUI()
+win.mainloop()
+
+13-22
+import tkinter as tk
+from tkinter import ttk
+
+GENDERS = ['남성', '여성', '기타']
+COLORS = ['red', 'yellow', 'purple']
+
+def buildGUI():
+    btn1 = ttk.Button(win, text='버튼1')
+    btn2 = ttk.Button(win, text='매우 긴~~~ 너비와 높이를 갖는\n버\n튼\n2')
+    btn_group = ttk.Frame(win)
+    btn3 = ttk.Button(btn_group, text='버튼3')
+    btn4 = ttk.Button(btn_group, text='버튼4')
+    btn5 = ttk.Button(win, text='버튼5')
+
+    btn1.grid(row=0, column=0, sticky='se')
+    btn2.grid(row=0, column=1)
+    btn3.pack(side=tk.LEFT)
+    btn4.pack(side=tk.LEFT)
+    btn_group.grid(row=1, column=1, sticky='w')
+    btn5.grid(row=2, column=0)
+    
+win = tk.Tk()
+win.title('pack() 배치의 예1')
+win.geometry('300x200')
+buildGUI()
+win.mainloop()
+
+import tkinter as tk
+from tkinter import ttk
+
+def buildGUI():
+    btn1 = ttk.Button(win, text='버튼1')
+    btn2 = ttk.Button(win, text='매우 긴~~~ 너비와 높이를 갖는\n버\n튼\n2')
+    btn3 = ttk.Button(win, text='버튼3')
+    btn4 = ttk.Button(win, text='버튼4')
+    btn5 = ttk.Button(win, text='버튼5')
+
+    btn1.grid(row=0, column=0, sticky='se')
+    btn2.grid(row=0, column=1, columnspan=2)
+    btn3.grid(row=1, column=1, sticky='w')
+    btn4.grid(row=1, column=2)
+    btn5.grid(row=2, column=0)
+    
+win = tk.Tk()
+win.title('pack() 배치의 예1')
+win.geometry('300x200')
+buildGUI()
+win.mainloop()
